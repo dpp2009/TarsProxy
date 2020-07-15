@@ -1,0 +1,38 @@
+module queryf{
+
+    /**
+     * 端口信息
+     */
+    struct EndpointF
+    {
+        0 require string host;
+        1 require int port;
+        2 require int timeout;
+        3 require int istcp;
+        4 require int grid;
+        5 optional int groupworkid;
+        6 optional int grouprealid;
+        7 optional string setId;
+        8 optional int qos;
+        9 optional int bakFlag;
+        11 optional int weight;
+        12 optional int weightType;
+    };
+
+    interface queryf{
+
+        /** 根据id获取对象
+         *
+         * @param id 对象名称
+         *
+         * @return  返回所有该对象的活动endpoint列表
+         */
+        vector<EndpointF> findObjectById(string id);
+
+        int findObjectById4Any(string id, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
+        int findObjectById4All(string id, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
+        int findObjectByIdInSameGroup(string id, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
+        int findObjectByIdInSameStation(string id, string sStation, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
+        int findObjectByIdInSameSet(string id, string setId, out vector<EndpointF> activeEp, out vector<EndpointF> inactiveEp);
+    };
+};
