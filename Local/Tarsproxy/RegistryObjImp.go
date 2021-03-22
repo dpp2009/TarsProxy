@@ -58,11 +58,18 @@ func findObjectById(Id string) (ret []Local.EndpointF) {
 	cfg := tars.GetServerConfig()
 
 	var tarsGateWay Local.EndpointF;
+	tarsGateWay.Istcp = 1;
 	tarsGateWay.Host = cfg.Adapters["Local.Tarsproxy.localTcpProxy"].Endpoint.Host;
 	tarsGateWay.Port = cfg.Adapters["Local.Tarsproxy.localTcpProxy"].Endpoint.Port;
-	tarsGateWay.Istcp = 1;
+
+	for k, v := range(cfg.Adapters) {
+		if k == Id {
+			tarsGateWay.Host = v.Endpoint.Host;
+			tarsGateWay.Port = v.Endpoint.Port;
+		}
+	}
 
 	ret = append(ret, tarsGateWay)
-	println("findObjectById ret ",ret[0].Host,ret[0].Port)
+	Infolog("findObjectById %s %s:%d ",Id,ret[0].Host,ret[0].Port)
 	return ret
 }

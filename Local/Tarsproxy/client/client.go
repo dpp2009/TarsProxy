@@ -13,7 +13,40 @@ func main() {
 	//test2()
 	//test3()
 	//test4()
+	//test5()
+	test6()
 
+}
+
+func test6()  {
+	//test proxy
+
+	comm := tars.NewCommunicator()
+	obj := fmt.Sprintf("ReadX.HerActivityGatewayServer.ActivityObj@tcp -h 127.0.0.1 -p 10017 -t 60000")
+	app := new(PHPTest.PHPServer)
+	comm.StringToProxy(obj, app)
+
+	var inParam PHPTest.CommonInParam
+	inParam.AppId = 41
+	inParam.AreaId = 1
+
+	var result PHPTest.CommonResult
+	var activityInfo PHPTest.ActivityInfo
+
+	app.GetActivityInfo(&inParam,858851513,&result,&activityInfo)
+
+	fmt.Println("GetActivityInfo ",result.Code,result.Message,activityInfo.ActivityId,activityInfo.Title,activityInfo.StartTime,activityInfo.EndTime)
+}
+
+func test5()  {
+	//test proxy
+
+	comm := tars.NewCommunicator()
+	obj := fmt.Sprintf("ReadX.HerActivityGatewayServer.ActivityObj@tcp -h 127.0.0.1 -p 10017 -t 60000")
+	app := new(PHPTest.PHPServer)
+	comm.StringToProxy(obj, app)
+
+	app.Sleep(10)
 }
 
 func test4()  {

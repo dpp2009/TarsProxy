@@ -8,3 +8,6 @@ Tars/Tarsproxy/.idea/modules.xml
 Tars/Tarsproxy/.idea/Tarsproxy.iml
 Local/Tarsproxy/.idea/vcs.xml
 Tars/Tarsproxy/.idea/vcs.xml
+/Local/Tarsproxy/bin
+/Local/Tarsproxy/ConfigObj
+/Local/Tarsproxy/client/client.exe
